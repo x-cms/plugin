@@ -6,6 +6,17 @@
 
 @section('content')
     <div class="box box-info">
+        <div class="box-header with-border">
+            <div class="pull-right">
+                <form class="search-dtGrid-form" action="">
+                    <div class="form-group">
+                        <input type="text" id="keyword" name="keyword" class="form-control"
+                               placeholder="" autocomplete="off">
+                        <a href="javascript:;" class="btn btn-search"><i class="fa fa-search"></i></a>
+                    </div>
+                </form>
+            </div>
+        </div>
         <div class="box-body no-padding">
             <div id="gridContainer"></div>
         </div>
@@ -24,10 +35,11 @@
 @push('js')
 <script>
     let dtGridColumns = [
-        {id: 'title', title: '插件名称', fastQuery: true},
-        {id: 'author', title: '作者', fastQuery: true},
+        {id: 'title', title: '插件名称',},
         {id: 'description', title: '插件描述'},
         {id: 'version', title: '插件版本'},
+        {id: 'author', title: '作者'},
+        {id: 'operation', title: '管理操作'},
     ];
 
     let dtGridOption = {
@@ -35,7 +47,7 @@
         loadAll: true,
         loadURL: '{{ route('plugins.index') }}',
         columns: dtGridColumns,
-        tools: 'refresh|fastQuery',
+        tools: 'refresh',
     };
 
     let operateHandle = function () {

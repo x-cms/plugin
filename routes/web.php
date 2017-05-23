@@ -17,7 +17,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth.admin'], function (Rout
     $router->group(['prefix' => 'plugins'], function (Router $router) {
         $router->get('', 'PluginController@index')->name('plugins.index')->middleware('has-permission:view-plugins');
 
-//        $router->post('', 'PluginController@index')->name('plugins.index')->middleware('has-permission:view-plugins');
+        $router->post('', 'PluginController@index')->name('plugins.index')->middleware('has-permission:view-plugins');
 
         $router->delete('{id}', 'PluginController@destroy')->name('plugins.destroy')->middleware('has-permission:delete-plugins');
     });

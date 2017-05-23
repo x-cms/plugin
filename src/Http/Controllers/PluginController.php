@@ -15,9 +15,7 @@ class PluginController extends SystemController
 
             menu()->setActiveItem('plugins');
 
-            $this->breadcrumbs
-                ->addLink('插件与模板')
-                ->addLink('插件列表', route('plugins.index'));
+            $this->breadcrumbs->addLink('插件与模板')->addLink('插件列表', route('plugins.index'));
 
             return $next($request);
         });
@@ -27,11 +25,13 @@ class PluginController extends SystemController
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return array
      */
     public function index(Request $request)
     {
-
+        if ($request->isMethod('post')) {
+            return collect([])->toJson();
+        }
 
         $this->setPageTitle('插件列表');
 
@@ -51,7 +51,7 @@ class PluginController extends SystemController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -62,7 +62,7 @@ class PluginController extends SystemController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -73,7 +73,7 @@ class PluginController extends SystemController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -84,8 +84,8 @@ class PluginController extends SystemController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -96,7 +96,7 @@ class PluginController extends SystemController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
